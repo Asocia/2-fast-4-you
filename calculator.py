@@ -55,8 +55,6 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         self.actionSelect_Font.setShortcut("Ctrl+F")
         self.actionEnglish.triggered.connect(self.troll)
         self.actionHelp.triggered.connect(self.info)
-        # self.actionCheck_for_updates.triggered.connect(self.updates)
-        # self.actionCheck_for_updates.setShortcut("U")
 
     def digit_pressed(self):
         button = self.sender()
@@ -66,7 +64,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
             else:
                 label_number = format(float(self.label.text() + button.text()), ".15g")
                 self.label.setText(label_number)
-            # self.pushButton_equals.setChecked(True)
+
         else:
             label_number = format(float(button.text()), ".15g")
             self.typed_second_number = True
@@ -94,7 +92,6 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
     def binary_pressed(self):
         button = self.sender()
-        # print(button.text())
         self.firstNumber = float(self.label.text())
         self.typing_second_number = True
         selected_operation = self.binary_dict[button.text()]
@@ -103,7 +100,6 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
                 self.binary_buttons[i].setChecked(True)
             else:
                 self.binary_buttons[i].setChecked(False)
-        # self.pushButton_equals.setChecked(False)
 
     def equals_pressed(self):
         self.pushButton_equals.setChecked(True)
@@ -161,34 +157,15 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
     def link(self, linkStr):
         QtGui.QDesktopServices.openUrl(QUrl(linkStr))
 
-    def updates(self):
-        pass
-        # dialog = QtWidgets.QDialog(self)
-        # dialog.resize(200,100)
-        # progress = QtWidgets.QProgressBar(dialog)
-        # progress.resize(150,50)
-        # progress.move(20,20)
-        # dialog.show()
-        # progress.setValue(0)
-        # print(progress.value())
-        # completed = 0
-        # while completed<100:
-        #     completed += 0.001
-        #     progress.setValue(completed)
-        #     dialog.update()
-
     def info(self):
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Critical)
 
         msg.setText("What help? The app is very simple!!")
-        # msg.setInformativeText("This is additional information")
         msg.setWindowTitle("What Help?")
-        # msg.setDetailedText("The details are as follows:")
         msg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
         msg.exec_()
-        # msg.buttonClicked.connect(msgbtn)
-
+        
     def closeEvent(self, event):
         reply = QtWidgets.QMessageBox.question(self, 'Warning', "Are you sure want to quit?",
                                                QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Yes,
